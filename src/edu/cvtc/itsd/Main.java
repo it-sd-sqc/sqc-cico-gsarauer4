@@ -289,6 +289,19 @@ public class Main {
     labelState.setForeground(Color.magenta);
     panelStatus.add(labelState);
 
+    // Add the "Next Card Scan" button
+    JButton nextCardScanButton = new JButton("Next Card");
+    nextCardScanButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    nextCardScanButton.addActionListener(new ActionListener() {
+      @Override
+      // Reset the application state
+      public void actionPerformed(ActionEvent e) {
+        doneProcessing();
+      }
+    });
+    nextCardScanButton.setForeground(Color.green);
+    panelStatus.add(nextCardScanButton);
+
     panelStatus.add(Box.createVerticalGlue());
 
     // Error panel ////////////////////////////////////////////////////////////
