@@ -41,7 +41,7 @@ public class Main {
     public void insertString(FilterBypass fb, int offset, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      if (stringToAdd.matches("\\d+")) {
         super.insertString(fb, offset, stringToAdd, attr);
       }
       else {
@@ -53,7 +53,7 @@ public class Main {
     public void replace(FilterBypass fb, int offset, int lengthToDelete, String stringToAdd, AttributeSet attr)
         throws BadLocationException
     {
-      if (fb.getDocument() != null) {
+      if (stringToAdd.matches("\\d+")) {
         super.replace(fb, offset, lengthToDelete, stringToAdd, attr);
       }
       else {
@@ -288,6 +288,19 @@ public class Main {
     labelState.setAlignmentX(JComponent.CENTER_ALIGNMENT);
     labelState.setForeground(new Color(150,117,103));
     panelStatus.add(labelState);
+
+    // Add the "Next Card Scan" button
+    JButton nextCardScanButton = new JButton("Next Card");
+    nextCardScanButton.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+    nextCardScanButton.addActionListener(new ActionListener() {
+      @Override
+      // Reset the application state
+      public void actionPerformed(ActionEvent e) {
+        doneProcessing();
+      }
+    });
+    nextCardScanButton.setForeground(Color.green);
+    panelStatus.add(nextCardScanButton);
 
     panelStatus.add(Box.createVerticalGlue());
 
